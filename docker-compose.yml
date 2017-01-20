@@ -1,4 +1,4 @@
-db2:
+db:
   build: db
   ports:
     - "5432"
@@ -12,28 +12,28 @@ db2:
     - METASFRESH_PASSWORD=metasfresh
     - METASFRESH_DBNAME=metasfresh
     - DB_SYSPASS=SYSPASS
-app2:
+app:
   build: app
   links:
-    - db2:db
+    - db:db
   restart: always
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
     - /etc/localtime:/etc/localtime:ro
   environment:
     - METASFRESH_HOME=/opt/metasfresh
-webapi2:
+webapi:
   build: webapi
   ports:
     - "8080:8080"
   links:
-    - app2:app
-    - db2:db
+    - app:app
+    - db:db
   restart: always
   volumes:
     - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
     - /etc/localtime:/etc/localtime:ro
-webui2:
+webui:
   build: webui
   ports:
     - "80:80"

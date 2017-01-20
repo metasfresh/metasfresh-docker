@@ -19,10 +19,24 @@ services:
 
   app:
     build: app
-    ports:
-      - "8080:8080"
-      - "61616:61616"
     restart: always
     volumes:
       - ./volumes/app/log:/opt/metasfresh/log:rw
       - /etc/localtime:/etc/localtime:ro
+    environment:
+      - METASFRESH_HOME=/opt/metasfresh
+
+  webapi:
+    build: webapi
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
+      - /etc/localtime:/etc/localtime:ro
+
+  webui:
+    build: webui
+    ports:
+      - "80:80"
+    restart: always
