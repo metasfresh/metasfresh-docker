@@ -3,8 +3,8 @@
 set -e
 set -u
 
-DB_HOST=${DB_HOST:-db}
-APP_HOST=${APP_HOST:-app}
+DB_HOST=db
+APP_HOST=app
 
 set_properties()
 {
@@ -15,6 +15,12 @@ set_properties()
  fi
 }
 
+set_hosts()
+{
+ if [[ -z $(grep ${APP_HOST} /etc/hosts) ]]; then
+        sed -i 's/'$(hostname)'/'$(hostname)' '${APP_HOST}'/' /etc/hosts
+ fi
+}
 wait_dbms()
 {
  until nc -z $DB_HOST 5432
@@ -35,7 +41,8 @@ run_install()
 
 run_db_update()
 {
- java -jar /opt/metasfresh/dist/install/lib/de.metas.migration.cli.jar $@
+ sleep 10
+ cd /opt/metasfresh/dist/install/ && java -jar ./lib/de.metas.migration.cli.jar $@
 } 
 
 run_metasfresh()
@@ -47,6 +54,7 @@ run_install
 
 set_properties /opt/metasfresh/metasfresh.properties
 set_properties /opt/metasfresh/local_settings.properties
+set_properties /root/local_settings.properties
 
 wait_dbms
 

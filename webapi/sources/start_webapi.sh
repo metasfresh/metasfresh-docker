@@ -2,8 +2,8 @@
 
 set -e
 
-DB_HOST=${DB_HOST:-db}
-APP_HOST=${APP_HOST:-app}
+DB_HOST=db
+APP_HOST=app
 
 set_properties()
 {

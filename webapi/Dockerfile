@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 RUN apt update && apt -y full-upgrade
 RUN apt -y install netcat \
     && apt -y install openjdk-8-jdk-headless \
+    && apt -y install postgresql-client-9.5 \
     && apt -y autoremove \
     && apt -y autoclean
 

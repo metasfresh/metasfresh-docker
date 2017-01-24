@@ -14,6 +14,7 @@ db:
     - DB_SYSPASS=SYSPASS
 app:
   build: app
+  hostname: app
   links:
     - db:db
   restart: always
