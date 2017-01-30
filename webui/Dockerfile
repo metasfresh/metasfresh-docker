@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FROM metasfresh/metasfresh-webui:4.53.52.unstable
 
 COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
@@ -15,6 +16,9 @@ ENV APACHE_LOCK_DIR    /var/lock/apache2
 ENV APACHE_LOG_DIR     /var/log/apache2
 
 RUN chown www-data:www-data -R /opt/metasfresh-webui-frontend/
+=======
+FROM metasfresh/metasfresh-webui:latest
+>>>>>>> a8c581c4189df595832c3cef88e37cb3690e797e
 
 EXPOSE 80
 ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
