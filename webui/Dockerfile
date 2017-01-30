@@ -1,27 +1,12 @@
-FROM ubuntu:16.04
-RUN apt update && apt -y full-upgrade
-RUN apt -y install apache2 \
-    && apt -y install nodejs \
-    && apt -y install npm \
-    && apt -y install git \
-    && apt -y autoremove \
-    && apt -y autoclean
+FROM metasfresh/metasfresh-webui:4.53.52.unstable
 
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN a2enmod proxy_http proxy_html rewrite
-RUN a2dissite 000-default.conf default-ssl.conf
-RUN npm install webpack -g
+COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
 
-ADD sources/metasfresh_webui.tar.gz /
-
-COPY sources/metasfresh_webui.conf /etc/apache2/sites-available/
+#add apache config
+COPY sources/configs/metasfresh_webui.conf /etc/apache2/sites-available/
 RUN a2ensite metasfresh_webui.conf
 
-RUN chmod 700 /opt/metasfresh-webui-frontend/scripts/update_metasfresh-webui-frontend.sh
-RUN /opt/metasfresh-webui-frontend/scripts/update_metasfresh-webui-frontend.sh
-
-COPY sources/index.html /opt/metasfresh-webui-frontend/dist/
-
+#set environment
 ENV APACHE_RUN_USER    www-data
 ENV APACHE_RUN_GROUP   www-data
 ENV APACHE_PID_FILE    /var/run/apache2.pid

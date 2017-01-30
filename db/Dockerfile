@@ -1,15 +1,10 @@
-FROM postgres:9.5
-RUN apt update && apt -y full-upgrade 
+FROM metasfresh/metasfresh-db:4.53.52.unstable
 
 RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
 ENV LANG=de_DE.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_MESSAGES=en_US.UTF-8
 
-COPY sources/create_db.sh /docker-entrypoint-initdb.d/
-COPY sources/metasfresh.pgdump /tmp/
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["postgres"]
-EXPOSE 5432

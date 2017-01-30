@@ -1,19 +1,4 @@
-FROM ubuntu:16.04
-
-RUN apt update && apt -y full-upgrade
-RUN apt -y install netcat \
-    && apt -y install curl \
-    && apt -y install openjdk-8-jdk-headless \
-    && apt -y install postgresql-client-9.5 \
-    && apt -y autoremove \
-    && apt -y autoclean
-
-COPY sources/configs/local_settings.properties /root/
-RUN mkdir -p /opt/metasfresh-webui-api/metasfresh-webui-api \
-    && mkdir -p /opt/metasfresh-webui-api/log
-RUN curl https://repo.metasfresh.com/content/groups/mvn-release-2017-03/de/metas/ui/web/metasfresh-webui-api/2.7/metasfresh-webui-api-2.7.jar \
-    --output /opt/metasfresh-webui-api/metasfresh-webui-api.jar \
-    && chmod 750 /opt/metasfresh-webui-api/metasfresh-webui-api.jar
+FROM metasfresh/metasfresh-webapi:4.53.52.unstable
 
 COPY sources/configs/* /opt/metasfresh-webui-api/
 COPY sources/start_webapi.sh /opt/metasfresh-webui-api/

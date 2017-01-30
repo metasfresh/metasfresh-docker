@@ -1,7 +1,5 @@
 db:
   build: db
-  ports:
-    - "5432"
   restart: always
   volumes:
     - ./volumes/db/data:/var/lib/postgresql/data
@@ -25,8 +23,6 @@ app:
     - METASFRESH_HOME=/opt/metasfresh
 webapi:
   build: webapi
-  ports:
-    - "8080:8080"
   links:
     - app:app
     - db:db
@@ -36,6 +32,8 @@ webapi:
     - /etc/localtime:/etc/localtime:ro
 webui:
   build: webui
+  links:
+    - webapi:webapi
   ports:
     - "80:80"
   restart: always
