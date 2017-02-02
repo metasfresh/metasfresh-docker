@@ -1,0 +1,42 @@
+version: "2"
+
+services:
+
+  db:
+    build: db
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./volumes/db/data:/var/lib/postgresql/data
+      - ./volumes/db/log:/var/log/postgresql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - METASFRESH_USERNAME=metasfresh
+      - METASFRESH_PASSWORD=metasfresh
+      - METASFRESH_DBNAME=metasfresh
+      - DB_SYSPASS=SYSPASS
+
+  app:
+    build: app
+    restart: always
+    volumes:
+      - ./volumes/app/log:/opt/metasfresh/log:rw
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - METASFRESH_HOME=/opt/metasfresh
+
+  webapi:
+    build: webapi
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
+      - /etc/localtime:/etc/localtime:ro
+
+  webui:
+    build: webui
+    ports:
+      - "80:80"
+    restart: always

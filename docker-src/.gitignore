@@ -1,0 +1,5 @@
+**/opt/
+**/volumes/
+**/*tar.gz
+**/*.pgdump
+**/*.swp
