@@ -9,7 +9,7 @@ RUN a2dissite 000-default.conf default-ssl.conf
 
 RUN mkdir -p /opt/metasfresh-webui-frontend
 
-COPY sources/dist /opt/metasfresh-webui-frontend/
+COPY sources/dist /opt/metasfresh-webui-frontend/dist
 COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
 
 #add apache config
@@ -17,6 +17,8 @@ COPY sources/configs/metasfresh_webui.conf /etc/apache2/sites-available/
 RUN a2ensite metasfresh_webui.conf
 
 #set environment
+RUN . /etc/apache2/envvars
+
 ENV APACHE_RUN_USER    www-data
 ENV APACHE_RUN_GROUP   www-data
 ENV APACHE_PID_FILE    /var/run/apache2.pid
@@ -27,4 +29,4 @@ ENV APACHE_LOG_DIR     /var/log/apache2
 RUN chown www-data:www-data -R /opt/metasfresh-webui-frontend/
 
 EXPOSE 80
-ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
