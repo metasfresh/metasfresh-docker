@@ -1,4 +1,4 @@
-FROM metasfresh/metasfresh-db:4.54.53
+FROM metasfresh/metasfresh-db:4.55.54
 
 RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
 ENV LANG=de_DE.UTF-8

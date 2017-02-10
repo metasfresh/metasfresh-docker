@@ -11,7 +11,7 @@ RUN apt -y install netcat \
 COPY sources/configs/local_settings.properties /root/
 RUN mkdir -p /opt/metasfresh-webui-api/metasfresh-webui-api \
     && mkdir -p /opt/metasfresh-webui-api/log
-RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-2017-05/de/metas/ui/web/metasfresh-webui-api/2.10/metasfresh-webui-api-2.10.jar \
+RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-2017-06/de/metas/ui/web/metasfresh-webui-api/2.7/metasfresh-webui-api-2.7.jar \
     --output /opt/metasfresh-webui-api/metasfresh-webui-api.jar \
     && chmod 750 /opt/metasfresh-webui-api/metasfresh-webui-api.jar
 

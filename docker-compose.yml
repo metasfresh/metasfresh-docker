@@ -9,7 +9,7 @@ db:
     - METASFRESH_USERNAME=metasfresh
     - METASFRESH_PASSWORD=metasfresh
     - METASFRESH_DBNAME=metasfresh
-    - DB_SYSPASS=SYSPASS
+    - DB_SYSPASS=System
 app:
   build: app
   hostname: app
