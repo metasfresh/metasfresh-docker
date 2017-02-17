@@ -1,4 +1,4 @@
 const config = {
-        API_URL: 'http://MYDOCKERHOST/rest/api',
-        WS_URL: 'http://MYDOCKERHOST/stomp'
+        API_URL: 'http://MYDOCKERHOST:PORT/rest/api',
+        WS_URL: 'http://MYDOCKERHOST:PORT/stomp'
 }

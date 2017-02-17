@@ -1,6 +1,8 @@
 FROM ubuntu:16.04
 
+
 RUN apt update && apt -y full-upgrade
+
 RUN apt -y install netcat \
     && apt -y install curl \
     && apt -y install openjdk-8-jdk-headless \
@@ -9,7 +11,7 @@ RUN apt -y install netcat \
     && apt -y autoclean
 
 RUN mkdir -p /opt/metasfresh
-RUN curl https://repo.metasfresh.com/service/local/repositories/mvn-release-2017-06/content/de/metas/endcustomer/mf15/de.metas.endcustomer.mf15.dist/2.8/de.metas.endcustomer.mf15.dist-2.8-dist.tar.gz \
+RUN curl https://repo.metasfresh.com/service/local/repositories/mvn-release-2017-07/content/de/metas/endcustomer/mf15/de.metas.endcustomer.mf15.dist/2.5/de.metas.endcustomer.mf15.dist-2.5-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
 
 COPY sources/configs/* /opt/metasfresh/

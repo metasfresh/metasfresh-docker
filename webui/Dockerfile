@@ -1,9 +1,12 @@
-FROM metasfresh/metasfresh-webui:4.55.54
+FROM metasfresh/metasfresh-webui:4.56.55
 
 COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
 
 #add apache config
 COPY sources/configs/metasfresh_webui.conf /etc/apache2/sites-available/
+RUN mkdir -p /etc/apache2/certs/
+COPY sources/certs /etc/apache2/certs
+
 RUN a2ensite metasfresh_webui.conf
 
 #set environment
@@ -18,5 +21,5 @@ ENV APACHE_LOG_DIR     /var/log/apache2
 
 RUN chown www-data:www-data -R /opt/metasfresh-webui-frontend/
 
-EXPOSE 80
-ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
+EXPOSE 80 443
+ENTRYPOINT ["/start_webui.sh"]
