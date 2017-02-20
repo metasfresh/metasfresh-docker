@@ -31,13 +31,14 @@ In order to install metasfresh in a docker environment you're free to follow thi
 
 *  **Q: I want to run multiple metasfresh-docker instances on the same docker-host - what do I need to change?**
    * A: Create a directory for each metasfresh-docker stack you want to run. Then clone this repository directly in the new directories and change the exposing portnumber for each container inside the `docker-compose.yml` so each portnumber is unique. Then simply build the container as stated in the [install guide](http://docs.metasfresh.org/howto_collection/EN/How_do_I_setup_the_metasfresh_stack_using_Docker.html) and start the containers.
-      ```bash
-   mkdir /var/metasfresh1
-   cd /var/metasfresh1
-   git clone https://github.com/metasfresh/metasfresh-docker.git .
-   vi ./docker-compose.yml
-   #change '80:80' and '443:443' to eg. '8080:80' and '8443:443'
-   ```
+
+```bash
+mkdir /var/metasfresh1
+cd /var/metasfresh1
+git clone https://github.com/metasfresh/metasfresh-docker.git .
+vi ./docker-compose.yml
+#change '80:80' and '443:443' to eg. '8080:80' and '8443:443'
+```
 *  **Q: I have additional questions not listed here. Is there some form to get in contact with you?**
    * A: Of course there is. The best place to get your questions answered is using our forum, which you can find here: https://forum.metasfresh.org/
 
