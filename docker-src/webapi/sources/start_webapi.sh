@@ -24,7 +24,14 @@ wait_dbms()
 
 run_metasfresh()
 {
- cd /opt/metasfresh-webui-api/ && java -jar metasfresh-webui-api.jar
+ cd /opt/metasfresh-webui-api/ && java -Dsun.misc.URLClassPath.disableJarChecking=true \
+ -Xmx1024M -XX:MaxPermSize=512M -XX:+HeapDumpOnOutOfMemoryError \
+ -DPropertyFile=/opt/metasfresh-webui-api/metasfresh.properties \
+ -Dcom.sun.management.jmxremote.port=1618 \
+ -Dcom.sun.management.jmxremote.authenticate=false \
+ -Dcom.sun.management.jmxremote.ssl=false \
+ -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8789 \
+ -jar metasfresh-webui-api.jar
 }
 
 

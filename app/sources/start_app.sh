@@ -47,7 +47,12 @@ run_db_update()
 
 run_metasfresh()
 {
- cd /opt/metasfresh/ && java -jar metasfresh_server.jar
+ cd /opt/metasfresh/ && java \
+ -Dsun.misc.URLClassPath.disableJarChecking=true \
+ -Xmx1024M -XX:MaxPermSize=512M -XX:+HeapDumpOnOutOfMemoryError \
+ -DPropertyFile=/opt/metasfresh/metasfresh.properties \
+ -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \
+ -jar metasfresh_server.jar
 }
 
 run_install
