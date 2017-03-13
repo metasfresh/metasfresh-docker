@@ -8,9 +8,9 @@ Additionally you will find the source files for modifying the core images in cas
 ## Installation: ##
 In order to install metasfresh in a docker environment you're free to follow this guide:
 
-[Install metasfresh on Docker](http://docs.metasfresh.org/howto_collection/EN/How_do_I_setup_the_metasfresh_stack_using_Docker.html)
+[Install metasfresh on Docker](http://docs.metasfresh.org/installation_collection/EN/How_do_I_setup_the_metasfresh_stack_using_Docker.html)
 
-
+[Install metasfresh on Docker - SSL](http://docs.metasfresh.org/installation_collection/EN/How_do_I_setup_metasfresh_docker_with_ssl.html)
 ## Guides: ##
 
  * [Create a database backup](http://docs.metasfresh.org/howto_collection/EN/How_do_I_backup_metasfresh_docker.html)
@@ -18,6 +18,8 @@ In order to install metasfresh in a docker environment you're free to follow thi
  * [Update your metasfresh-docker installation](http://docs.metasfresh.org/howto_collection/EN/How_do_I_update_metasfresh_using_Docker.html)
 
  * [Use the Java Swing Client with metasfresh-docker](http://docs.metasfresh.org/howto_collection/EN/How_do_I_use_Java_Client_using_Docker.html)
+
+ * [Run multiple metasfresh-docker stacks / Change webui ports](http://docs.metasfresh.org/installation_collection/EN/How_do_I_change_the_webui_ports_for_metasfresh_docker.html)
 
 ## Frequent Questions: ##
 *  **Q:  Where are the database files located at?**
@@ -29,15 +31,8 @@ In order to install metasfresh in a docker environment you're free to follow thi
 
 
 *  **Q: I want to run multiple metasfresh-docker instances on the same docker-host - what do I need to change?**
-   * A: Create a directory for each metasfresh-docker stack you want to run. Then clone this repository directly in the new directories and change the exposing portnumber for each container inside the `docker-compose.yml` so each portnumber is unique. Then simply build the container as stated in the [install guide](http://docs.metasfresh.org/howto_collection/EN/How_do_I_setup_the_metasfresh_stack_using_Docker.html) and start the containers.
+   * A: Create a directory for each metasfresh-docker stack you want to run. Then clone this repository directly in the new directories and [change the exposing ports](http://docs.metasfresh.org/installation_collection/EN/How_do_I_change_the_webui_ports_for_metasfresh_docker.html) so each stack uses different exposed ports.
 
-```bash
-mkdir /var/metasfresh1
-cd /var/metasfresh1
-git clone https://github.com/metasfresh/metasfresh-docker.git .
-vi ./docker-compose.yml
-#change '80:80' and '443:443' to eg. '8080:80' and '8443:443'
-```
 *  **Q: I have additional questions not listed here. Is there some form to get in contact with you?**
    * A: Of course there is. The best place to get your questions answered is using our forum, which you can find here: https://forum.metasfresh.org/
 
