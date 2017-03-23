@@ -15,6 +15,7 @@ app:
   hostname: app
   links:
     - db:db
+    - search:search
   restart: always
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
@@ -26,6 +27,7 @@ webapi:
   links:
     - app:app
     - db:db
+    - search:search
   restart: always
   volumes:
     - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
@@ -37,4 +39,20 @@ webui:
   ports:
     - "80:80"
     - "443:443"
+  restart: always
+search:
+  build: search
+  ulimits:
+    memlock:
+      soft: -1
+      hard: -1
+    nofile:
+      soft: 65536
+      hard: 65536
+  cap_add:
+    - IPC_LOCK
+  volumes:
+    - ./volumes/search/data:/usr/share/elasticsearch/data
+  environment:
+    - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
   restart: always
