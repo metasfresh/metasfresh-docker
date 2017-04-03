@@ -9,9 +9,7 @@ ENV LANGUAGE=en_US.UTF-8
 ENV LC_MESSAGES=en_US.UTF-8
 
 COPY sources/create_db.sh /docker-entrypoint-initdb.d/
-
-RUN curl http://metasfresh.com/wp-content/releases/db_seeds/metasfresh_latest.pgdump \
-    --output /tmp/metasfresh.pgdump
+COPY sources/metasfresh.pgdump /tmp/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
