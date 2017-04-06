@@ -28,6 +28,8 @@ webapi:
     - app:app
     - db:db
     - search:search
+  expose:
+    - "8080"
   restart: always
   volumes:
     - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
