@@ -11,7 +11,7 @@ RUN apt -y install netcat \
     && apt -y autoclean
 
 RUN mkdir -p /opt/metasfresh
-RUN curl https://repo.metasfresh.com/service/local/repositories/mvn-release/content/de/metas/endcustomer/mf15/de.metas.endcustomer.mf15.dist/2.126/de.metas.endcustomer.mf15.dist-2.126-dist.tar.gz \
+RUN curl https://repo.metasfresh.com/service/local/repositories/mvn-release/content/de/metas/dist/de.metas.endcustomer.mf15.dist/2.133/de.metas.endcustomer.mf15.dist-2.133-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
 
 COPY sources/configs/* /opt/metasfresh/
