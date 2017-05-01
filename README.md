@@ -1,6 +1,6 @@
 [![Join the chat at https://gitter.im/metasfresh/metasfresh](https://badges.gitter.im/metasfresh/metasfresh.svg)](https://gitter.im/metasfresh/metasfresh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## About this repository:##
+## About this repository: ##
 This repository contains all necessary files in order to create metasfresh in a docker environment.
 
 Additionally you will find the source files for modifying the core images in case you want to build and publish a modified version of metasfresh-docker.
