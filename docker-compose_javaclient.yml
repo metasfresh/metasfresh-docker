@@ -49,6 +49,8 @@ webui:
     - "80:80"
     - "443:443"
   restart: always
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
 search:
   build: search
   ulimits:
@@ -62,6 +64,7 @@ search:
     - IPC_LOCK
   volumes:
     - ./volumes/search/data:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
   environment:
     - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
   restart: always
