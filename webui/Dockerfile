@@ -21,5 +21,6 @@ ENV APACHE_LOG_DIR     /var/log/apache2
 
 RUN chown www-data:www-data -R /opt/metasfresh-webui-frontend/
 
+
 EXPOSE 80 443
 ENTRYPOINT ["/start_webui.sh"]
