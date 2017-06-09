@@ -1,9 +1,9 @@
 {
   "build": {
-    "ciBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh-webui-frontend/job/release/28/",
-    "ciBuildNo": "28",
+    "ciBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh-webui-frontend/job/release/32/",
+    "ciBuildNo": "32",
     "ciJobName": "metasfresh-webui-frontend/release",
-    "ciBuildTag": "jenkins-metasfresh-webui-frontend-release-28"
-    "ciGitSHA1": "5a162ccde4f694b07a324698037152035b995f44"
+    "ciBuildTag": "jenkins-metasfresh-webui-frontend-release-32"
+    "ciGitSHA1": "223e32b8cd6ab27a603ed0f331a8dd419a0c9814"
   }
 }
