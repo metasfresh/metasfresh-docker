@@ -17,6 +17,9 @@ app:
   links:
     - db:db
     - search:search
+  expose:
+    - "8282"
+    - "61616"
   restart: always
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
