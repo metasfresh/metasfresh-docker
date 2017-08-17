@@ -53,6 +53,9 @@ webui:
   volumes:
     - /etc/localtime:/etc/localtime:ro
     - /etc/timezone:/etc/timezone:ro
+  #uncomment and set to URL where metasfresh will be available from browsers
+  #environment:
+    #- WEBAPI_URL=http://example.com:8080
 search:
   build: search
   ulimits:
