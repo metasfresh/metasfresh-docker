@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 
 
 RUN apt update && apt -y full-upgrade
+RUN apt autoclean && apt update
 
 RUN apt -y install netcat \
     && apt -y install curl \
