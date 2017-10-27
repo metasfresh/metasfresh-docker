@@ -28,10 +28,11 @@ webapi:
     - app:app
     - db:db
     - search:search
-  #for accessing the api directly (eg. for debugging or connecting your
-  #app to the metasfresh api) uncomment following lines:
-  #ports:
-    #- "8080:8080" 
+# to access the webui-api directly 
+# (eg. for debugging or connecting your app to the metasfresh api) 
+# uncomment following port:
+# ports:
+#   - "8080:8080" 
   restart: always
   volumes:
     - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
@@ -55,6 +56,12 @@ search:
       hard: 65536
   cap_add:
     - IPC_LOCK
+# to access the search api directly
+# (e.g. if you did docker-compose up search to have the deachboard with your locally running metasfresh services)
+# uncomment following ports:
+# ports:
+#   - "9200:9200"
+#   - "9300:9300"
   volumes:
     - ./volumes/search/data:/usr/share/elasticsearch/data
   environment:
