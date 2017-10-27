@@ -2,6 +2,8 @@ FROM ubuntu:16.04
 
 
 RUN apt update && apt -y full-upgrade
+RUN apt autoclean && apt update
+
 RUN apt -y install netcat \
     && apt -y install curl \
     && apt -y install openjdk-8-jdk-headless \
@@ -12,7 +14,7 @@ RUN apt -y install netcat \
 COPY sources/configs/local_settings.properties /root/
 RUN mkdir -p /opt/metasfresh-webui-api/metasfresh-webui-api \
     && mkdir -p /opt/metasfresh-webui-api/log
-RUN curl https://repo.metasfresh.com/service/local/repositories/mvn-release/content/de/metas/ui/web/metasfresh-webui-api/2.68/metasfresh-webui-api-2.68.jar \
+RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-releases/de/metas/ui/web/metasfresh-webui-api/5.31.2-264+release/metasfresh-webui-api-5.31.2-264+release.jar \
     --output /opt/metasfresh-webui-api/metasfresh-webui-api.jar \
     && chmod 750 /opt/metasfresh-webui-api/metasfresh-webui-api.jar
 

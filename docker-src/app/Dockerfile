@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 
 
 RUN apt update && apt -y full-upgrade
+RUN apt autoclean && apt update
 
 RUN apt -y install netcat \
     && apt -y install curl \
@@ -11,7 +12,7 @@ RUN apt -y install netcat \
     && apt -y autoclean
 
 RUN mkdir -p /opt/metasfresh
-RUN curl https://repo.metasfresh.com/service/local/repositories/mvn-release/content/de/metas/dist/de.metas.endcustomer.mf15.dist/2.144/de.metas.endcustomer.mf15.dist-2.144-dist.tar.gz \
+RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-releases/de/metas/dist/de.metas.endcustomer.mf15.dist/5.31.2-403+release/de.metas.endcustomer.mf15.dist-5.31.2-403+release-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
 
 COPY sources/configs/* /opt/metasfresh/

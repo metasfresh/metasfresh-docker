@@ -5,6 +5,7 @@ db:
     - ./volumes/db/data:/var/lib/postgresql/data
     - ./volumes/db/log:/var/log/postgresql
     - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
   environment:
     - METASFRESH_USERNAME=metasfresh
     - METASFRESH_PASSWORD=metasfresh
@@ -16,10 +17,14 @@ app:
   links:
     - db:db
     - search:search
+  expose:
+    - "8282"
+    - "61616"
   restart: always
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
     - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
   environment:
     - METASFRESH_HOME=/opt/metasfresh
 webapi:
@@ -37,6 +42,7 @@ webapi:
   volumes:
     - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
     - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
 webui:
   build: webui
   links:
@@ -45,6 +51,12 @@ webui:
     - "80:80"
     - "443:443"
   restart: always
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  #uncomment and set to URL where metasfresh will be available from browsers
+  #environment:
+    #- WEBAPI_URL=http://example.com:8080
 search:
   build: search
   ulimits:
@@ -64,6 +76,8 @@ search:
 #   - "9300:9300"
   volumes:
     - ./volumes/search/data:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
   environment:
     - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
   restart: always

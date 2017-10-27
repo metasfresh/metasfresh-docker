@@ -1,4 +1,4 @@
-FROM metasfresh/metasfresh-webui:5.8
+FROM metasfresh/metasfresh-webui:5.31
 
 COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
 
@@ -20,6 +20,7 @@ ENV APACHE_LOCK_DIR    /var/lock/apache2
 ENV APACHE_LOG_DIR     /var/log/apache2
 
 RUN chown www-data:www-data -R /opt/metasfresh-webui-frontend/
+
 
 EXPOSE 80 443
 ENTRYPOINT ["/start_webui.sh"]

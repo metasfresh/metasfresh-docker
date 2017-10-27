@@ -1,0 +1,77 @@
+db:
+  build: db
+  ports:
+    - "5432:5432"
+  restart: always
+  volumes:
+    - ./volumes/db/data:/var/lib/postgresql/data
+    - ./volumes/db/log:/var/log/postgresql
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  environment:
+    - METASFRESH_USERNAME=metasfresh
+    - METASFRESH_PASSWORD=metasfresh
+    - METASFRESH_DBNAME=metasfresh
+    - DB_SYSPASS=System
+app:
+  build: app
+  hostname: app
+  ports:
+    - "8788:8788"
+    - "8282:8282"
+    - "61616:61616"
+  links:
+    - db:db
+    - search:search
+  restart: always
+  volumes:
+    - ./volumes/app/log:/opt/metasfresh/log:rw
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  environment:
+    - METASFRESH_HOME=/opt/metasfresh
+webapi:
+  build: webapi
+  links:
+    - app:app
+    - db:db
+    - search:search
+  #for accessing the api directly (eg. for debugging or connecting your
+  #app to the metasfresh api) uncomment following lines:
+  ports:
+    - "8080:8080"
+    - "8789:8789"
+  restart: always
+  volumes:
+    - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+webui:
+  build: webui
+  links:
+    - webapi:webapi
+  ports:
+    - "80:80"
+    - "443:443"
+  restart: always
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+search:
+  build: search
+  ulimits:
+    memlock:
+      soft: -1
+      hard: -1
+    nofile:
+      soft: 65536
+      hard: 65536
+  cap_add:
+    - IPC_LOCK
+  volumes:
+    - ./volumes/search/data:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  environment:
+    - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
+  restart: always
