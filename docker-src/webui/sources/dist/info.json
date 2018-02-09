@@ -1,10 +1,10 @@
 {
   "build": {
-		"releaseVersion": "5.43.1-1093+master",
-    "jenkinsBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh-webui-frontend/job/master/1093/",
-    "jenkinsBuildNo": "1093",
-    "jenkinsJobName": "metasfresh-webui-frontend/master",
-    "jenkinsBuildTag": "jenkins-metasfresh-webui-frontend-master-1093"
-    "gitSHA1": "48f0f6e840c43c84b549016a76969cf9ded3c909"
+		"releaseVersion": "5.43.2-121+release",
+    "jenkinsBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh-webui-frontend/job/release/121/",
+    "jenkinsBuildNo": "121",
+    "jenkinsJobName": "metasfresh-webui-frontend/release",
+    "jenkinsBuildTag": "jenkins-metasfresh-webui-frontend-release-121"
+    "gitSHA1": "e3fb98dbee956f8531c47b3c67ededa432df8e1f"
   }
 }
