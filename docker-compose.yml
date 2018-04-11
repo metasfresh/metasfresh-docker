@@ -16,6 +16,7 @@ app:
   hostname: app
   links:
     - db:db
+    - rabbitmq:rabbitmq
     - search:search
   expose:
     - "8282"
@@ -32,6 +33,7 @@ webapi:
   links:
     - app:app
     - db:db
+    - rabbitmq:rabbitmq
     - search:search
 # to access the webui-api directly 
 # (eg. for debugging or connecting your app to the metasfresh api) 
@@ -57,6 +59,19 @@ webui:
   #uncomment and set to URL where metasfresh will be available from browsers
   #environment:
     #- WEBAPI_URL=http://example.com:8080
+rabbitmq:
+  build: rabbitmq
+  expose:
+    - "5672"
+  restart: always
+  volumes:
+    - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  environment:
+    RABBITMQ_DEFAULT_USER: "metasfresh"
+    RABBITMQ_DEFAULT_PASS: "metasfresh"
+    RABBITMQ_DEFAULT_VHOST: "/"
 search:
   build: search
   ulimits:
