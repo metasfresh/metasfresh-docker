@@ -27,4 +27,5 @@ msv3server:
     - RABBITMQ_HOST=rabbitmq
     - RABBITMQ_USER=metasfresh
     - RABBITMQ_PASSWORD=metasfresh
+    - RABBITMQ_PORT=5672
     - JAVA_MAX_HEAP=128M
