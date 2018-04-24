@@ -1,0 +1,31 @@
+msv3server:
+#IMPORTANT:
+# To use this server, you will need to manually create an additional user and database on 
+# your 'db' docker-container which needs to be the same as the environment-variables below.
+# eg. on your docker-host:
+#    docker exec -u postgres metasfreshdocker_db_1 psql -c "CREATE ROLE msv3server LOGIN ENCRYPTED PASSWORD 'md54154f6327b4f0de7252b668be051dd06' VALID UNTIL 'infinity';"
+#    docker exec -u postgres metasfreshdocker_db_1 psql -c "CREATE DATABASE msv3server WITH ENCODING='UTF8' OWNER=msv3server CONNECTION LIMIT=-1;"
+#
+# For more info and variables, check: https://github.com/metasfresh/metasfresh-docker/issues/34
+  build: msv3server
+  mem_limit: 128m
+  restart: always
+  links:
+    - db:db
+    - rabbitmq:rabbitmq
+  ports:
+    - "8383:8080"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  environment:
+    - DB_HOST=db
+    - DB_NAME=msv3server
+    - DB_USER=msv3server
+    - DB_PASSWORD=msv3server
+    - DB_PORT=5432
+    - RABBITMQ_HOST=rabbitmq
+    - RABBITMQ_USER=metasfresh
+    - RABBITMQ_PASSWORD=metasfresh
+    - RABBITMQ_PORT=5672
+    - JAVA_MAX_HEAP=128M
