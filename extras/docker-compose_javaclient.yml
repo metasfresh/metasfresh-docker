@@ -21,7 +21,10 @@ app:
     - "61616:61616"
   links:
     - db:db
+    - rabbitmq:rabbitmq
     - search:search
+  expose:
+    - "8788"
   restart: always
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
@@ -34,9 +37,13 @@ webapi:
   links:
     - app:app
     - db:db
+    - rabbitmq:rabbitmq
     - search:search
-  #for accessing the api directly (eg. for debugging or connecting your
-  #app to the metasfresh api) uncomment following lines:
+  expose:
+    - "8789"
+# to access the webui-api directly 
+# (eg. for debugging or connecting your app to the metasfresh api) 
+# uncomment following port:
   #ports:
     #- "8080:8080" 
   restart: always
@@ -55,6 +62,22 @@ webui:
   volumes:
     - /etc/localtime:/etc/localtime:ro
     - /etc/timezone:/etc/timezone:ro
+  #uncomment and set to URL where metasfresh will be available from browsers
+  #environment:
+    #- WEBAPI_URL=http://example.com:8080
+rabbitmq:
+  build: rabbitmq
+  expose:
+    - "5672"
+  restart: always
+  volumes:
+    - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  environment:
+    RABBITMQ_DEFAULT_USER: "metasfresh"
+    RABBITMQ_DEFAULT_PASS: "metasfresh"
+    RABBITMQ_DEFAULT_VHOST: "/"
 search:
   build: search
   ulimits:
@@ -66,6 +89,12 @@ search:
       hard: 65536
   cap_add:
     - IPC_LOCK
+# to access the search api directly
+# (e.g. if you did docker-compose up search to have the deachboard with your locally running metasfresh services)
+# uncomment following ports:
+# ports:
+#   - "9200:9200"
+#   - "9300:9300"
   volumes:
     - ./volumes/search/data:/usr/share/elasticsearch/data
     - /etc/localtime:/etc/localtime:ro
