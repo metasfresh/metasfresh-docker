@@ -1,10 +1,10 @@
 {
   "build": {
-	"releaseVersion": "5.79.2-238+release",
-    "jenkinsBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh-webui-frontend/job/release/238/",
-    "jenkinsBuildNo": "238",
+	"releaseVersion": "5.80.2-243+release",
+    "jenkinsBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh-webui-frontend/job/release/243/",
+    "jenkinsBuildNo": "243",
     "jenkinsJobName": "metasfresh-webui-frontend/release",
-    "jenkinsBuildTag": "jenkins-metasfresh-webui-frontend-release-238"
-    "gitSHA1": "0cbc33f62b67cf01ee8cccb9eb0170a96ecf8fff"
+    "jenkinsBuildTag": "jenkins-metasfresh-webui-frontend-release-243"
+    "gitSHA1": "bffbaa9cd9d2aa69b7de3d3c94d399f4859826ff"
   }
 }
