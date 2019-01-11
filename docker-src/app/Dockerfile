@@ -12,7 +12,7 @@ RUN apt -y install netcat \
     && apt -y autoclean
 
 RUN mkdir -p /opt/metasfresh
-RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-releases/de/metas/dist/metasfresh-dist-dist/5.85.2-870+release/metasfresh-dist-dist-5.85.2-870+release-dist.tar.gz \
+RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-releases/de/metas/dist/metasfresh-dist-dist/5.86.2-881+release/metasfresh-dist-dist-5.86.2-881+release-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
 
 COPY sources/configs/* /opt/metasfresh/
