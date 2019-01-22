@@ -1,9 +1,22 @@
 #!/bin/bash
 
 set -e
+#set -x
 
 DB_HOST=db
 APP_HOST=app
+
+echo_variable_values()
+{
+ echo "*************************************************************"
+ echo "Display the variable values we run with"
+ echo "*************************************************************"
+ echo "Note: all these variables can be set using the -e parameter."
+ echo ""
+ echo "DB_HOST=${DB_HOST}"
+ echo "APP_HOST=${APP_HOST}"
+ echo ""
+}
 
 set_properties()
 {
@@ -25,7 +38,8 @@ wait_dbms()
 run_metasfresh()
 {
  cd /opt/metasfresh-webui-api/ && java -Dsun.misc.URLClassPath.disableJarChecking=true \
- -Xmx1024M -XX:MaxPermSize=512M -XX:+HeapDumpOnOutOfMemoryError \
+ -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap \
+ -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh-webui-api/heapdump \
  -DPropertyFile=/opt/metasfresh-webui-api/metasfresh.properties \
  -Dcom.sun.management.jmxremote.port=1618 \
  -Dcom.sun.management.jmxremote.authenticate=false \
@@ -34,6 +48,7 @@ run_metasfresh()
  -jar metasfresh-webui-api.jar
 }
 
+echo_variable_values
 
 set_properties /opt/metasfresh-webui-api/metasfresh.properties
 set_properties /opt/metasfresh-webui-api/local_settings.properties
