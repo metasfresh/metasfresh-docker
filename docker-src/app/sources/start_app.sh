@@ -54,9 +54,14 @@ run_metasfresh()
  #               info: https://docs.oracle.com/cd/E26362_01/E40761/html/known-bugs-issues.html
  #                     https://stackoverflow.com/a/19379760
 
+# thx to 
+# https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/
+MEMORY_PARAMS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+
+
  cd /opt/metasfresh/ && java \
  -Dsun.misc.URLClassPath.disableJarChecking=true \
- -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap \
+ $MEMORY_PARAMS \
  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
  -DPropertyFile=/opt/metasfresh/metasfresh.properties \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \

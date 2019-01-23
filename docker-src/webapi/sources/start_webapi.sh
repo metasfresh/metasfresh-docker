@@ -35,10 +35,14 @@ wait_dbms()
  done
 }
 
+# thx to 
+# https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/
+MEMORY_PARAMS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+
 run_metasfresh()
 {
  cd /opt/metasfresh-webui-api/ && java -Dsun.misc.URLClassPath.disableJarChecking=true \
- -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap \
+ $MEMORY_PARAMS \
  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh-webui-api/heapdump \
  -DPropertyFile=/opt/metasfresh-webui-api/metasfresh.properties \
  -Dcom.sun.management.jmxremote.port=1618 \
