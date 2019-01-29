@@ -53,9 +53,13 @@ run_metasfresh()
  #               info: https://docs.oracle.com/cd/E26362_01/E40761/html/known-bugs-issues.html
  #                     https://stackoverflow.com/a/19379760
 
+ #2019-01-29 jb: added '-XX:HeapDumpPath=/opt/metasfresh/heapdump' to java opts
+ #               gh issue: https://github.com/metasfresh/metasfresh-docker/issues/41
+ 
  cd /opt/metasfresh/ && java \
  -Dsun.misc.URLClassPath.disableJarChecking=true \
- -Xmx1024M -XX:MaxPermSize=512M -XX:+HeapDumpOnOutOfMemoryError \
+ -Xmx1024M -XX:MaxPermSize=512M \
+ -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
  -DPropertyFile=/opt/metasfresh/metasfresh.properties \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \
  -Dcom.sun.net.ssl.enableECC=false \
