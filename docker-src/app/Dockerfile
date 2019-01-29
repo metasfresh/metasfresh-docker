@@ -14,7 +14,7 @@ RUN apt -y install netcat \
 RUN mkdir -p /opt/metasfresh
 RUN curl https://repo.metasfresh.com/content/repositories/mvn-release-releases/de/metas/dist/metasfresh-dist-dist/5.88.2-894+release/metasfresh-dist-dist-5.88.2-894+release-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
-RUN mkdir -o /opt/metasfresh/heapdump
+RUN mkdir -p /opt/metasfresh/heapdump
 
 COPY sources/configs/* /opt/metasfresh/
 COPY sources/configs/local_settings.properties /root/
