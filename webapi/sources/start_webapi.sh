@@ -26,7 +26,7 @@ run_metasfresh()
 {
  cd /opt/metasfresh-webui-api/ && java -Dsun.misc.URLClassPath.disableJarChecking=true \
  -Xmx1024M -XX:MaxPermSize=512M \
- -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
+ -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh-webui-api/heapdump \
  -DPropertyFile=/opt/metasfresh-webui-api/metasfresh.properties \
  -Dcom.sun.management.jmxremote.port=1618 \
  -Dcom.sun.management.jmxremote.authenticate=false \
