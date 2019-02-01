@@ -55,7 +55,7 @@ run_metasfresh()
 
  cd /opt/metasfresh/ && java \
  -Dsun.misc.URLClassPath.disableJarChecking=true \
- -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 \
+ -Xmx1024M -XX:MaxPermSize=512M \
  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
  -DPropertyFile=/opt/metasfresh/metasfresh.properties \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \
