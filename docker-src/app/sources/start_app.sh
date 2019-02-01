@@ -56,9 +56,14 @@ run_metasfresh()
  #2019-01-29 jb: added '-XX:HeapDumpPath=/opt/metasfresh/heapdump' to java opts
  #               gh issue: https://github.com/metasfresh/metasfresh-docker/issues/41
  
+ #2019-02-01 jb: changed memory parameter to make java aware its living in a container.
+ #               this allows for flexible memory allocation in docker-compose.yml settings.
+ #               Thanks to https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/
+ 
+ 
  cd /opt/metasfresh/ && java \
  -Dsun.misc.URLClassPath.disableJarChecking=true \
- -Xmx1024M -XX:MaxPermSize=512M \
+ -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 \
  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
  -DPropertyFile=/opt/metasfresh/metasfresh.properties \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \
