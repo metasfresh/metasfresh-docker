@@ -13,6 +13,7 @@ db:
 app:
   build: app
   hostname: app
+  mem_limit: 1280m
   links:
     - db:db
   restart: always
@@ -24,6 +25,7 @@ app:
     - METASFRESH_HOME=/opt/metasfresh
 webapi:
   build: webapi
+  mem_limit: 1280m
   links:
     - app:app
     - db:db

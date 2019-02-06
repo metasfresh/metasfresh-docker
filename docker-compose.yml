@@ -13,6 +13,7 @@ db:
     - DB_SYSPASS=System
 app:
   build: app
+  mem_limit: 1280m
   hostname: app
   links:
     - db:db
@@ -32,6 +33,7 @@ app:
     - METASFRESH_HOME=/opt/metasfresh
 webapi:
   build: webapi
+  mem_limit: 1280m
   links:
     - app:app
     - db:db

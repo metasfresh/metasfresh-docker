@@ -24,12 +24,19 @@ wait_dbms()
 
  #2019-01-29 jb: added '-XX:HeapDumpPath=/opt/metasfresh/heapdump' to java opts
  #               gh issue: https://github.com/metasfresh/metasfresh-docker/issues/41
+ 
+  #2019-01-29 jb: added '-XX:HeapDumpPath=/opt/metasfresh/heapdump' to java opts
+ #               gh issue: https://github.com/metasfresh/metasfresh-docker/issues/41
+ 
+ #2019-02-06 jb: added '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1' to java opts
+ #               gh issue: https://github.com/metasfresh/metasfresh-docker/issues/43
+ #               info: thx to https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/
 
 run_metasfresh()
 {
  cd /opt/metasfresh-webui-api/ && java -Dsun.misc.URLClassPath.disableJarChecking=true \
- -Xmx1024M -XX:MaxPermSize=512M \
- -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
+ -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 \
+ -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh-webui-api/heapdump \
  -DPropertyFile=/opt/metasfresh-webui-api/metasfresh.properties \
  -Dcom.sun.management.jmxremote.port=1618 \
  -Dcom.sun.management.jmxremote.authenticate=false \
