@@ -35,7 +35,7 @@ run_metasfresh()
  -Dcom.sun.management.jmxremote.authenticate=false \
  -Dcom.sun.management.jmxremote.ssl=false \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8789 \
- -jar metasfresh-webui-api.jar
+ org.springframework.boot.loader.JarLauncher
 }
 
 
