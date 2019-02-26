@@ -20,7 +20,8 @@ COPY sources/configs/local_settings.properties /root/
 RUN mkdir -p /opt/metasfresh-webui-api/metasfresh-webui-api \
     && mkdir -p /opt/metasfresh-webui-api/log \
     && mkdir -p /opt/metasfresh-webui-api/heapdump
-RUN curl https://repo.metasfresh.com/content/repositories/mvn-release/de/metas/ui/web/metasfresh-webui-api/5.88.2-655+release/metasfresh-webui-api-5.88.2-655+release.jar \
+
+RUN curl https://repo.metasfresh.com/content/repositories/mvn-release/de/metas/ui/web/metasfresh-webui-api/5.92.2-669+release/metasfresh-webui-api-5.92.2-669+release.jar \
     --output /opt/metasfresh-webui-api/metasfresh-webui-api.jar
 
 # Explode the uber jar to make it easier to work with the docker image; 
@@ -30,6 +31,7 @@ RUN curl https://repo.metasfresh.com/content/repositories/mvn-release/de/metas/u
 RUN cd /opt/metasfresh/metasfresh-webui-api \
  && (unzip -q /opt/metasfresh/metasfresh-webui-api/metasfresh-webui-api || echo "Ignore exit code $? because spring boot's uber jar starts with a shell script") \
  && rm /opt/metasfresh/metasfresh-webui-api/metasfresh-webui-api
+
 
 COPY sources/configs/* /opt/metasfresh-webui-api/
 COPY sources/start_webapi.sh /opt/metasfresh-webui-api/
