@@ -63,7 +63,7 @@ run_metasfresh()
  -DPropertyFile=/opt/metasfresh/metasfresh.properties \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \
  -Dcom.sun.net.ssl.enableECC=false \
- -jar metasfresh_server.jar
+ org.springframework.boot.loader.JarLauncher
 }
 
 run_install
