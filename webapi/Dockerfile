@@ -1,4 +1,4 @@
-FROM metasfresh/metasfresh-webapi:5.97
+FROM metasfresh/metasfresh-webapi:5.98
 
 COPY sources/configs/* /opt/metasfresh-webui-api/
 COPY sources/start_webapi.sh /opt/metasfresh-webui-api/
