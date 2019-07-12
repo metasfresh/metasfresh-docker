@@ -1,4 +1,4 @@
-FROM metasfresh/metasfresh-app:5.111
+FROM metasfresh/metasfresh-app:5.112
 
 COPY sources/configs/* /opt/metasfresh/
 COPY sources/start_app.sh /opt/metasfresh/

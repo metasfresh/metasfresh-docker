@@ -1,4 +1,4 @@
-FROM metasfresh/metasfresh-webui:5.111
+FROM metasfresh/metasfresh-webui:5.112
 
 COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
 
