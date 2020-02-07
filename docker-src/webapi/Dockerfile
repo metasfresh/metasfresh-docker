@@ -15,7 +15,7 @@ COPY sources/configs/local_settings.properties /root/
 RUN mkdir -p /opt/metasfresh-webui-api/metasfresh-webui-api \
     && mkdir -p /opt/metasfresh-webui-api/log \
     && mkdir -p /opt/metasfresh-webui-api/heapdump
-RUN curl https://repo.metasfresh.com/content/repositories/mvn-release/de/metas/ui/web/metasfresh-webui-api/5.136.2-855+release/metasfresh-webui-api-5.136.2-855+release.jar \
+RUN curl https://repo.metasfresh.com/repository/mvn-release/de/metas/ui/web/metasfresh-webui-api/5.138.1-16822+master/metasfresh-webui-api-5.138.1-16822+master.jar \
     --output /opt/metasfresh-webui-api/metasfresh-webui-api.jar \
     && chmod 750 /opt/metasfresh-webui-api/metasfresh-webui-api.jar
 
