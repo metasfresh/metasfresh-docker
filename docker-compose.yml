@@ -11,6 +11,7 @@ db:
     - METASFRESH_PASSWORD=metasfresh
     - METASFRESH_DBNAME=metasfresh
     - DB_SYSPASS=System
+    - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
 app:
   build: app
   hostname: app
