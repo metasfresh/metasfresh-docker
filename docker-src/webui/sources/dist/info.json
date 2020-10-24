@@ -1,10 +1,10 @@
 {
   "build": {
-	"releaseVersion": "5.155.2-212+release",
-    "jenkinsBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh/job/release/212/",
-    "jenkinsBuildNo": "212",
+	"releaseVersion": "5.156.2-218+release",
+    "jenkinsBuildUrl": "https://jenkins.metasfresh.com/job/metasfresh/job/release/218/",
+    "jenkinsBuildNo": "218",
     "jenkinsJobName": "metasfresh/release",
-    "jenkinsBuildTag": "jenkins-metasfresh-release-212"
-    "gitSHA1": "5dc597fe33125a874e6b8f17c748e4c6cee2b841"
+    "jenkinsBuildTag": "jenkins-metasfresh-release-218"
+    "gitSHA1": "321ce7e266a94f18793a04fdb3925a7edddac54e"
   }
 }
