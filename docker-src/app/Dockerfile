@@ -12,7 +12,7 @@ RUN apt -y install netcat \
     && apt -y autoclean
 
 RUN mkdir -p /opt/metasfresh
-RUN curl https://repo.metasfresh.com/repository/mvn-release-releases/de/metas/dist/metasfresh-dist-dist/5.156.2-218+release/metasfresh-dist-dist-5.156.2-218+release-dist.tar.gz \
+RUN curl https://repo.metasfresh.com/repository/mvn-release-releases/de/metas/dist/metasfresh-dist-dist/5.157.2-222+release/metasfresh-dist-dist-5.157.2-222+release-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
 RUN mkdir -p /opt/metasfresh/heapdump
 
