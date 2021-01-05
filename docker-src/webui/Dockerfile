@@ -7,7 +7,7 @@ RUN apt -y install apache2 \
     && apt -y autoremove \
     && apt -y autoclean
 
-RUN a2enmod proxy proxy_http proxy_html proxy_wstunnel rewrite ssl
+RUN a2enmod proxy proxy_http proxy_html proxy_wstunnel headers rewrite ssl
 RUN a2dissite 000-default.conf default-ssl.conf
 
 RUN mkdir -p /opt/metasfresh-webui-frontend
