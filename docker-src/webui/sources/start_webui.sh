@@ -12,7 +12,7 @@ else
 	sed -i 's/\https\b/http/g' /opt/metasfresh-webui-frontend/dist/config.js
 	a2ensite metasfresh_webui.conf
 	a2dissite metasfresh_webui_ssl.conf
-	echo "[METASFRESH] Runnning Non-SSL!"
+	echo "[METASFRESH] Running Non-SSL!"
 fi
 
 /usr/sbin/apache2ctl -DFOREGROUND	
