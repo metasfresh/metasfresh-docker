@@ -36,7 +36,7 @@ In order to install metasfresh in a docker environment you're free to follow thi
 *  **Q: I have additional questions not listed here. Is there some form to get in contact with you?**
    * A: Of course there is. The best place to get your questions answered is using our forum, which you can find here: https://forum.metasfresh.org/
 
-*  **Q: After applying an update, `search` container is displaying errors like this:
+*  **Q: After applying an update, `search` container is displaying errors like this:**
         ```
         search_1    | ElasticsearchException[failed to bind service]; nested: AccessDeniedException[/usr/share/elasticsearch/data/nodes];
         search_1    | Likely root cause: java.nio.file.AccessDeniedException: /usr/share/elasticsearch/data/nodes
