@@ -36,6 +36,16 @@ In order to install metasfresh in a docker environment you're free to follow thi
 *  **Q: I have additional questions not listed here. Is there some form to get in contact with you?**
    * A: Of course there is. The best place to get your questions answered is using our forum, which you can find here: https://forum.metasfresh.org/
 
+*  **Q: After applying an update, `search` container is displaying errors like this:**
+        ```
+        search_1    | ElasticsearchException[failed to bind service]; nested: AccessDeniedException[/usr/share/elasticsearch/data/nodes];
+        search_1    | Likely root cause: java.nio.file.AccessDeniedException: /usr/share/elasticsearch/data/nodes
+        ```
+   * A: Unfortunately elasticsearch does not provide an easy way to upgrade already collected data on an update to a new elasticsearch version and changed permission requirements of the data and config files.
+        With metasfresh upgrade to 5.165 we upgraded elasticsearch to v. `7.9.3` https://github.com/metasfresh/metasfresh-docker/issues/63 in order to support new functions for metasfresh.
+        To solve this issue, you will need to stop your instance `docker-compose down`, remove the `./volumes/search` folder including already collected elasticsearch data and restart `docker-compose up -d`.
+        This will deploy the correct permissions and settings including the updated elasticsearch container.
+        
 ## Do you want to help? ##
    Do you want to help improving documentation, contribute some code or participate in functional requirements. That's great, you're welcome! Please read our contibutor guidelines first. You can find them here: [CONTRIBUTING.md](https://github.com/metasfresh/metasfresh/blob/master/CONTRIBUTING.md)
    If you would like to get in touch with other contributors then just join our chat on Gitter: [metasfresh Gitter](https://gitter.im/metasfresh/metasfresh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
