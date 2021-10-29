@@ -14,6 +14,7 @@ RUN mkdir -p /opt/metasfresh-webui-frontend
 
 COPY sources/dist /opt/metasfresh-webui-frontend/dist
 COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
+COPY sources/configs/mobile/config.js /opt/metasfresh-webui-frontend/dist/mobile/
 
 #add apache config
 COPY sources/configs/metasfresh_webui.conf /etc/apache2/sites-available/
