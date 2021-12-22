@@ -8,18 +8,18 @@ Additionally you will find the source files for modifying the core images in cas
 ## Installation: ##
 In order to install metasfresh in a docker environment you're free to follow this guide:
 
-[Install metasfresh on Docker](http://docs.metasfresh.org/installation_collection/EN/How_do_I_setup_the_metasfresh_stack_using_Docker.html)
+[Install metasfresh on Docker](https://docs.metasfresh.org/installation_collection/EN/How_do_I_setup_the_metasfresh_stack_using_Docker.html)
 
-[Install metasfresh on Docker - SSL](http://docs.metasfresh.org/installation_collection/EN/How_do_I_setup_metasfresh_docker_with_ssl.html)
+[Install metasfresh on Docker - SSL](https://docs.metasfresh.org/installation_collection/EN/How_do_I_setup_metasfresh_docker_with_ssl.html)
 ## Guides: ##
 
- * [Create a database backup](http://docs.metasfresh.org/howto_collection/EN/How_do_I_backup_metasfresh_docker.html)
+ * [Create a database backup](https://docs.metasfresh.org/installation_collection/EN/How_do_I_backup_metasfresh_docker.html)
 
- * [Update your metasfresh-docker installation](http://docs.metasfresh.org/howto_collection/EN/How_do_I_update_metasfresh_using_Docker.html)
+ * [Update your metasfresh-docker installation](https://docs.metasfresh.org/howto_collection/EN/How_do_I_update_metasfresh_using_Docker.html)
 
- * [Use the Java Swing Client with metasfresh-docker](http://docs.metasfresh.org/howto_collection/EN/How_do_I_use_Java_Client_using_Docker.html)
+ * [Use the Java Swing Client with metasfresh-docker](https://docs.metasfresh.org/howto_collection/EN/How_do_I_use_Java_Client_using_Docker.html)
 
- * [Run multiple metasfresh-docker stacks / Change webui ports](http://docs.metasfresh.org/installation_collection/EN/How_do_I_change_the_webui_ports_for_metasfresh_docker.html)
+ * [Run multiple metasfresh-docker stacks / Change webui ports](https://docs.metasfresh.org/installation_collection/EN/How_do_I_change_the_webui_ports_for_metasfresh_docker.html)
 
 ## Frequent Questions: ##
 *  **Q:  Where are the database files located at?**
