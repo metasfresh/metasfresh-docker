@@ -21,12 +21,12 @@ app:
     - search:search
   expose:
     - "8282"
-    - "61616"
     - "8788"
   restart: always
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
     - ./volumes/app/heapdump:/opt/metasfresh/heapdump:rw
+    - ./volumes/app/external-lib:/opt/metasfresh/external-lib:rw
     - /etc/localtime:/etc/localtime:ro
     - /etc/timezone:/etc/timezone:ro
   environment:

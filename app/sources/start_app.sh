@@ -53,12 +53,21 @@ run_metasfresh()
  #		 info: https://docs.oracle.com/cd/E26362_01/E40761/html/known-bugs-issues.html
  #		       https://stackoverflow.com/a/19379760
 
+ #2019-01-29 jb: added '-XX:HeapDumpPath=/opt/metasfresh/heapdump' to java opts
+ #               gh issue: https://github.com/metasfresh/metasfresh-docker/issues/41
+ 
+ #2022-04-23 ts: added '-Dloader.path=/opt/metasfresh/external-lib':
+ # Allow loading jars from /opt/metasfresh/external-lib.
+ # This assumes that the app uses PropertiesLauncher (can be verified by opening the jar e.g. with 7-zip and checking META-INF/MANIFEST.MF)
+ # Also see https://docs.spring.io/spring-boot/docs/current/reference/html/executable-jar.html#executable-jar-property-launcher-features
+  
  cd /opt/metasfresh/ && java \
  -Dsun.misc.URLClassPath.disableJarChecking=true \
- -Xmx1024M -XX:MaxPermSize=512M \
+ -Xmx1024M \
  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/metasfresh/heapdump \
  -DPropertyFile=/opt/metasfresh/metasfresh.properties \
  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8788 \
+ -Dloader.path=/opt/metasfresh/external-lib \
  -Dcom.sun.net.ssl.enableECC=false \
  -jar metasfresh_server.jar
 }

@@ -19,6 +19,7 @@ app:
   volumes:
     - ./volumes/app/log:/opt/metasfresh/log:rw
     - ./volumes/app/heapdump:/opt/metasfresh/heapdump:rw
+    - ./volumes/app/external-lib:/opt/metasfresh/external-lib:rw
     - /etc/localtime:/etc/localtime:ro
   environment:
     - METASFRESH_HOME=/opt/metasfresh
