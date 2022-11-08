@@ -11,7 +11,7 @@ ENV LC_MESSAGES=en_US.UTF-8
 COPY sources/create_db.sh /docker-entrypoint-initdb.d/
 COPY sources/metasfresh.pgdump /tmp/
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["postgres"]
 EXPOSE 5432
