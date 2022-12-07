@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:18.04
 
 RUN apt update && apt -y full-upgrade
 RUN apt autoclean && apt update

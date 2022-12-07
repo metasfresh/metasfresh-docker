@@ -7,7 +7,7 @@ RUN apt autoclean && apt update
 RUN apt -y install netcat \
     && apt -y install curl \
     && apt -y install openjdk-8-jdk-headless \
-    && apt -y install postgresql-client-common \
+    && apt -y install postgresql-client-14 \
     && apt -y autoremove \
     && apt -y autoclean
 
