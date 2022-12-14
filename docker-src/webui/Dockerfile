@@ -1,9 +1,10 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN apt update && apt -y full-upgrade
 RUN apt autoclean && apt update
 
-RUN apt -y install apache2 \
+#thx to https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai
+RUN DEBIAN_FRONTEND="noninteractive" apt -y install apache2 \
     && apt -y autoremove \
     && apt -y autoclean
 
