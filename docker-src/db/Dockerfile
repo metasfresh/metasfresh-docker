@@ -1,4 +1,4 @@
-FROM postgres:13
+FROM postgres:15.1
 
 RUN apt update
 RUN apt install -y curl
@@ -11,7 +11,7 @@ ENV LC_MESSAGES=en_US.UTF-8
 COPY sources/create_db.sh /docker-entrypoint-initdb.d/
 COPY sources/metasfresh.pgdump /tmp/
 
-#ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 CMD ["postgres"]
 EXPOSE 5432

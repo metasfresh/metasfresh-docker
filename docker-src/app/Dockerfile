@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 
 RUN apt update && apt -y full-upgrade
@@ -7,7 +7,7 @@ RUN apt autoclean && apt update
 RUN apt -y install netcat \
     && apt -y install curl \
     && apt -y install openjdk-8-jdk-headless \
-    && apt -y install postgresql-client-9.5 \
+    && apt -y install postgresql-client-12 \
     && apt -y autoremove \
     && apt -y autoclean
 
