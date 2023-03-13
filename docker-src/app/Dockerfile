@@ -12,7 +12,6 @@ RUN apt -y install netcat \
     && apt -y autoclean
 
 RUN mkdir -p /opt/metasfresh
-
 RUN curl https://repo.metasfresh.com/repository/mvn-master_java14-releases/de/metas/dist/metasfresh-dist-dist/5.176.2-63+masterjava14/metasfresh-dist-dist-5.176.2-63+masterjava14-dist.tar.gz \
   | tar -xzC /opt/metasfresh/ 
 RUN mkdir -p /opt/metasfresh/heapdump
