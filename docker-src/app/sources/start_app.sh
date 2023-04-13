@@ -45,6 +45,26 @@ run_db_update()
  cd /opt/metasfresh/dist/install/ && java -jar ./lib/de.metas.migration.cli.jar $@
 } 
 
+# https://github.com/metasfresh/me03/issues/15048
+# To fix an issue with java8 and printing invoices / jasper reports
+# Need to remove this file or we get "java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper" when running jasper reports
+remove_accessibility_properties()
+{
+  if [ -f /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/accessibility.properties ]
+  then
+    rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/accessibility.properties
+  else
+    echo "File does not exists: /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/accessibility.properties"
+  fi
+ 
+  if [ -f /etc/java-8-openjdk/accessibility.properties ]
+  then
+    rm /etc/java-8-openjdk/accessibility.properties
+  else
+    echo "File does not exists: /etc/java-8-openjdk/accessibility.properties"
+  fi
+}
+
 run_metasfresh()
 {
 
@@ -81,6 +101,8 @@ set_properties /root/local_settings.properties
 wait_dbms
 
 run_db_update
+
+remove_accessibility_properties
 
 run_metasfresh
 
