@@ -1,5 +1,6 @@
 db:
   build: db
+  shm_size: 256m
   restart: always
   volumes:
     - ./volumes/db/data:/var/lib/postgresql/data

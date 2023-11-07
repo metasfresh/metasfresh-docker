@@ -1,0 +1,11 @@
+version: '3'
+services:
+  upgradedb:
+    build: db-9.5-to-15
+    image: upgradedb
+    restart: unless-stopped
+    volumes:
+      - ./../volumes/newdb/data:/var/lib/postgresql/15/data
+      - ./../volumes/db/data:/var/lib/postgresql/9.5/data
+    environment:
+      - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
