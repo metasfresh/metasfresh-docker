@@ -1,0 +1,137 @@
+version: '3'
+services:
+  db:
+    build: db
+    shm_size: 256m
+    restart: always
+    volumes:
+      - ./volumes/db/data:/var/lib/postgresql/data
+      - ./volumes/db/log:/var/log/postgresql
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - METASFRESH_USERNAME=metasfresh
+      - METASFRESH_PASSWORD=metasfresh
+      - METASFRESH_DBNAME=metasfresh
+      - DB_SYSPASS=System
+      - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
+  app:
+    build: app
+    hostname: app
+    links:
+      - db:db
+      - rabbitmq:rabbitmq
+      - search:search
+    expose:
+      - "8282"
+      - "8788"
+    restart: always
+    volumes:
+      - ./volumes/app/log:/opt/metasfresh/log:rw
+      - ./volumes/app/heapdump:/opt/metasfresh/heapdump:rw
+      - ./volumes/app/external-lib:/opt/metasfresh/external-lib:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - METASFRESH_HOME=/opt/metasfresh
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
+  webapi:
+    build: webapi
+    links:
+      - app:app
+      - db:db
+      - rabbitmq:rabbitmq
+      - search:search
+    expose:
+      - "8789"
+  # to access the webui-api directly
+  # (eg. for debugging or connecting your app to the metasfresh api)
+  # uncomment following port:
+    #ports:
+     #- "8080:8080"
+    restart: always
+    volumes:
+      - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
+      - ./volumes/webapi/heapdump:/opt/metasfresh-webui-api/heapdump:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
+  webui:
+    build: webui
+    links:
+      - webapi:webapi
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    #uncomment and set to URL where metasfresh will be available from browsers
+    #environment:
+      #- WEBAPI_URL=http://example.com:8080
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
+  rabbitmq:
+    build: rabbitmq
+    expose:
+      - "5672"
+    restart: always
+    volumes:
+      - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      RABBITMQ_DEFAULT_USER: "metasfresh"
+      RABBITMQ_DEFAULT_PASS: "metasfresh"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
+  search:
+    build: search
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+  # to access the search api directly
+  # (e.g. if you did docker-compose up search to have the deachboard with your locally running metasfresh services)
+  # uncomment following ports:
+  # ports:
+  #   - "9200:9200"
+  #   - "9300:9300"
+    volumes:
+      - ./volumes/search/data:/usr/share/elasticsearch/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
+    restart: always
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file

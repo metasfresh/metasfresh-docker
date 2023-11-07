@@ -1,0 +1,21 @@
+version: '3'
+services:
+  beforedb:
+    build: ./../db
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U metasfresh", "-d", "metasfresh" ]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+    volumes:
+      - ./../volumes/db/data:/var/lib/postgresql/data
+      - ./../volumes/db/log:/var/log/postgresql
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - METASFRESH_USERNAME=metasfresh
+      - METASFRESH_PASSWORD=metasfresh
+      - METASFRESH_DBNAME=metasfresh
+      - DB_SYSPASS=System
+      - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS

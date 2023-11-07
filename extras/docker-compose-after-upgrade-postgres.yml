@@ -1,0 +1,14 @@
+version: '3'
+services:
+  afterdb:
+    build: db15
+    restart: unless-stopped
+    volumes:
+      - ./../volumes/newdb/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U metasfresh", "-d", "metasfresh" ]
+      interval: 30s
+      timeout: 60s
+      retries: 5

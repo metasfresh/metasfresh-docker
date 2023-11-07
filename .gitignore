@@ -3,3 +3,5 @@
 **/*tar.gz
 **/*.pgdump
 **/*.swp
+**/*.out
+**/*.txt
