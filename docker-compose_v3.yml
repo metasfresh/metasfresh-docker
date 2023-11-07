@@ -15,6 +15,11 @@ services:
       - METASFRESH_DBNAME=metasfresh
       - DB_SYSPASS=System
       - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
   app:
     build: app
     hostname: app
@@ -34,6 +39,11 @@ services:
       - /etc/timezone:/etc/timezone:ro
     environment:
       - METASFRESH_HOME=/opt/metasfresh
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
   webapi:
     build: webapi
     links:
@@ -54,6 +64,11 @@ services:
       - ./volumes/webapi/heapdump:/opt/metasfresh-webui-api/heapdump:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
   webui:
     build: webui
     links:
@@ -68,6 +83,11 @@ services:
     #uncomment and set to URL where metasfresh will be available from browsers
     #environment:
       #- WEBAPI_URL=http://example.com:8080
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
   rabbitmq:
     build: rabbitmq
     expose:
@@ -81,6 +101,11 @@ services:
       RABBITMQ_DEFAULT_USER: "metasfresh"
       RABBITMQ_DEFAULT_PASS: "metasfresh"
       RABBITMQ_DEFAULT_VHOST: "/"
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
   search:
     build: search
     ulimits:
@@ -105,3 +130,8 @@ services:
     environment:
       - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
     restart: always
+    logging:
+      options:
+        max-size: '30m'
+        max-file: '3'
+      driver: json-file
