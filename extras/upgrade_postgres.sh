@@ -7,6 +7,8 @@
 #usage           :nohup bash ./upgrade_postgres.sh
 #logs            :tail -f nohup.out
 #
+#                Prerequisites: Enough storage space to store a second db-volume
+#
 #                unknown data-types aren't supported anymore, they should be altered before upgrade
 #                SELECT *
 #                FROM information_schema.columns
