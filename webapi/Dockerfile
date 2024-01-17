@@ -1,4 +1,5 @@
-FROM metasfresh/metasfresh-webapi:5.175
+ARG BASE_REGISTRY=metasfresh
+FROM $BASE_REGISTRY/metasfresh-webapi:5.175
 
 COPY sources/configs/* /opt/metasfresh-webui-api/
 COPY sources/start_webapi.sh /opt/metasfresh-webui-api/

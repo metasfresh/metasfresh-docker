@@ -1,4 +1,5 @@
-FROM metasfresh/metasfresh-app:5.175
+ARG BASE_REGISTRY=metasfresh
+FROM $BASE_REGISTRY/metasfresh-app:5.175
 
 COPY sources/configs/* /opt/metasfresh/
 COPY sources/start_app.sh /opt/metasfresh/
