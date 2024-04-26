@@ -45,6 +45,13 @@ run_db_update()
  cd /opt/metasfresh/dist/install/ && java -jar ./lib/de.metas.migration.cli.jar $@
 } 
 
+# For Instances with Java8. Should have no effect on other java versions due to absolute paths used. 
+# Need to remove this file or we get "java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper" when running jasper reports
+remove_accessibility-properties(){
+	rm -fv /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/accessibility.properties
+	rm -fv /etc/java-8-openjdk/accessibility.properties
+}
+
 run_metasfresh()
 {
 
@@ -81,6 +88,8 @@ set_properties /root/local_settings.properties
 wait_dbms
 
 run_db_update
+
+remove_accessibility-properties
 
 run_metasfresh
 
