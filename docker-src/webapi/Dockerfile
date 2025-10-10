@@ -6,7 +6,7 @@ RUN apt autoclean && apt update
 
 RUN apt -y install netcat \
     && apt -y install curl \
-    && apt -y install openjdk-8-jdk-headless \
+    && apt -y install openjdk-17-jdk-headless \
     && apt -y install postgresql-client-12 \
     && apt -y autoremove \
     && apt -y autoclean
@@ -15,7 +15,7 @@ COPY sources/configs/local_settings.properties /root/
 RUN mkdir -p /opt/metasfresh-webui-api/metasfresh-webui-api \
     && mkdir -p /opt/metasfresh-webui-api/log \
     && mkdir -p /opt/metasfresh-webui-api/heapdump
-RUN curl https://repo.metasfresh.com/repository/mvn-release/de/metas/ui/web/metasfresh-webui-api/5.174.2-461+release/metasfresh-webui-api-5.174.2-461+release.jar \
+RUN curl https://repo.metasfresh.com/repository/mvn-master_java14/de/metas/ui/web/metasfresh-webui-api/5.176.2-63+masterjava14/metasfresh-webui-api-5.176.2-63+masterjava14.jar \
     --output /opt/metasfresh-webui-api/metasfresh-webui-api.jar \
     && chmod 750 /opt/metasfresh-webui-api/metasfresh-webui-api.jar
 
