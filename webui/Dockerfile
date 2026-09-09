@@ -1,28 +1,24 @@
 ARG BASE_REGISTRY=metasfresh
-FROM $BASE_REGISTRY/metasfresh-webui:5.175
+ARG MF_VERSION=5.175
 
-COPY sources/configs/config.js /opt/metasfresh-webui-frontend/dist/
+FROM ${BASE_REGISTRY}/metasfresh-webui:${MF_VERSION} AS bundle
+
+# nginx:stable (Debian, not alpine) for GNU sed in the entrypoint.
+FROM nginx:stable
+RUN rm -f /etc/nginx/conf.d/default.conf
+
+# openssl is used by the entrypoint to validate mounted certs.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY conf.d/     /etc/nginx/conf.d/
+COPY snippets/   /etc/nginx/snippets/
+COPY docker-entrypoint.d/10-metasfresh.sh /docker-entrypoint.d/10-metasfresh.sh
+RUN chmod +x /docker-entrypoint.d/10-metasfresh.sh
+
+COPY --from=bundle /opt/metasfresh-webui-frontend/dist/ /opt/metasfresh-webui-frontend/dist/
+COPY sources/configs/config.js        /opt/metasfresh-webui-frontend/dist/
 COPY sources/configs/mobile/config.js /opt/metasfresh-webui-frontend/dist/mobile/
 
-#add apache config
-COPY sources/configs/metasfresh_webui.conf /etc/apache2/sites-available/
-RUN mkdir -p /etc/apache2/certs/
-COPY sources/certs /etc/apache2/certs
-
-RUN a2ensite metasfresh_webui.conf
-
-#set environment
-RUN . /etc/apache2/envvars
-
-ENV APACHE_RUN_USER    www-data
-ENV APACHE_RUN_GROUP   www-data
-ENV APACHE_PID_FILE    /var/run/apache2.pid
-ENV APACHE_RUN_DIR     /var/run/apache2
-ENV APACHE_LOCK_DIR    /var/lock/apache2
-ENV APACHE_LOG_DIR     /var/log/apache2
-
-RUN chown www-data:www-data -R /opt/metasfresh-webui-frontend/
-
-
 EXPOSE 80 443
-ENTRYPOINT ["/start_webui.sh"]

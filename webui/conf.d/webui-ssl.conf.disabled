@@ -1,0 +1,11 @@
+# Enabled by the entrypoint (renamed to webui-ssl.conf) only when certs are mounted.
+server {
+    listen 443 ssl;
+    server_name _;
+
+    ssl_certificate     /etc/nginx/certs/fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+
+    include /etc/nginx/snippets/metasfresh-locations.conf;
+}
